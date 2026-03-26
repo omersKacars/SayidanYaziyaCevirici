@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+
+# Build / output directories
+dist/
+build/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# Environment variables
+.env
+.env.*
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+
+# Editor / IDE
+.vscode/
+.idea/
+.cursor/
+*.swp
+
+# Coverage / test outputs
+coverage/
+
+# Engineering principles / internal docs
+ANAYASA.md

@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Tutarı yazıya çeviren çok dilli ve çok para birimli web uygulaması."
+    />
+    <title>Tutarı Yazıya Çevir</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <section class="brand-hero" aria-label="Marka">
+        <a class="brand-hero-link" href="https://www.leadercoders.com" target="_blank" rel="noopener noreferrer" aria-label="Leadercoders sitesini aç">
+          <img
+            class="brand-hero-logo brand-hero-logo-light"
+            src="./assets/logo/logo-light.png"
+            alt="Leaderecoders logo light"
+            loading="lazy"
+            onerror="this.style.display='none'"
+          />
+          <img
+            class="brand-hero-logo brand-hero-logo-dark"
+            src="./assets/logo/logo-dark.png"
+            alt="Leaderecoders logo dark"
+            loading="lazy"
+            onerror="this.style.display='none'"
+          />
+          <p class="brand-hero-slogan">- Yeni Nesil Programlama Okulu -</p>
+        </a>
+        <a class="promo-link-btn" href="https://www.leadercoders.com" target="_blank" rel="noopener noreferrer">
+          <span class="promo-icon" aria-hidden="true">🚀</span>
+          <span>Ben de proje geliştirmek istiyorum</span>
+        </a>
+      </section>
+      <section class="card animate__animated animate__fadeInUp" data-aos="zoom-in-up">
+        <div class="title-row">
+          <h1 id="title">Profesyonel Tutar Metin Dönüştürücü</h1>
+          <div class="title-controls">
+            <div class="top-control">
+              <label id="app-language-label" class="field-label field-label-compact" for="app-language-select">
+                <span id="app-language-label-text">Uygulama Dili</span>
+                <img class="inline-flag-img" id="app-language-flag" src="./assets/flags/tr.svg" alt="" loading="lazy" aria-hidden="true" />
+              </label>
+              <select id="app-language-select" name="appLanguage"></select>
+            </div>
+            <button id="theme-toggle-btn" type="button" class="theme-btn">🌙 Dark</button>
+          </div>
+        </div>
+        <p class="subtitle" id="subtitle">
+          10 dil ve 10 para birimi desteği. Dil ve para birimini ayrı seçebilirsiniz.
+        </p>
+        <div class="locale-chip" id="locale-chip" aria-live="polite">
+          <img class="locale-flag-img" id="locale-flag" src="./assets/flags/tr.svg" alt="" loading="lazy" aria-hidden="true" />
+          <span class="locale-text" id="locale-text">Türkçe / TRY</span>
+        </div>
+
+        <form id="convert-form" novalidate>
+          <div class="form-grid" data-aos="fade-up">
+            <div class="field-card field-card-span-2">
+              <label id="currency-label" class="field-label" for="currency-select">
+                <span id="currency-label-text">Para Birimi</span>
+                <img class="inline-flag-img" id="currency-flag" src="./assets/flags/tr.svg" alt="" loading="lazy" aria-hidden="true" />
+              </label>
+              <select id="currency-select" name="currency"></select>
+              <div class="currency-meta" id="currency-meta" aria-live="polite">
+                <img class="currency-icon-img" id="currency-icon" src="./assets/flags/tr.svg" alt="" loading="lazy" aria-hidden="true" />
+                <span id="currency-name">Türk lirası</span>
+                <span class="currency-code" id="currency-code">TRY</span>
+              </div>
+            </div>
+
+            <div class="field-card">
+              <label id="template-label" class="field-label" for="document-template-select">Belge Şablonu</label>
+              <select id="document-template-select" name="documentTemplate"></select>
+            </div>
+
+            <div class="field-card">
+              <label class="toggle-label toggle-card-label" for="official-mode-checkbox">
+                <input id="official-mode-checkbox" name="officialMode" type="checkbox" />
+                <span id="official-mode-label">Resmi Cikti Modu (YALNIZ ...)</span>
+              </label>
+            </div>
+
+            <div class="field-card">
+              <label id="major-label" class="field-label" for="major-input">Ana Tutar</label>
+              <input
+                id="major-input"
+                name="major"
+                type="text"
+                inputmode="numeric"
+                pattern="[0-9]*"
+                placeholder="Örn: 1.234.567"
+                aria-describedby="error-text status-text"
+              />
+            </div>
+
+            <div class="field-card">
+              <label id="minor-label" class="field-label" for="minor-input">Alt Birim</label>
+              <input
+                id="minor-input"
+                name="minor"
+                type="text"
+                inputmode="numeric"
+                pattern="[0-9]*"
+                placeholder="Örn: 125"
+                aria-describedby="error-text status-text"
+              />
+            </div>
+          </div>
+
+          <p id="error-text" class="error" aria-live="polite" aria-atomic="true"></p>
+          <p id="status-text" class="status" aria-live="polite" aria-atomic="true"></p>
+
+          <div class="actions">
+            <button id="convert-btn" type="submit">Yazıya Çevir</button>
+            <button id="copy-btn" type="button" class="secondary" disabled>Sonucu Kopyala</button>
+          </div>
+        </form>
+
+        <section class="result-wrapper">
+          <div class="result-head">
+            <h2 id="result-title">Sonuç</h2>
+            <div class="result-lang-control">
+              <label id="output-language-label" class="field-label field-label-compact" for="output-language-select">
+                <span id="output-language-label-text">Sonuç Dili</span>
+                <img class="inline-flag-img" id="output-language-flag" src="./assets/flags/tr.svg" alt="" loading="lazy" aria-hidden="true" />
+              </label>
+              <select id="output-language-select" name="outputLanguage"></select>
+            </div>
+          </div>
+          <p id="result-text" class="result">-</p>
+          <div class="history-wrapper">
+            <div class="history-head">
+              <h3 id="history-title" class="history-title">Son 5 İşlem</h3>
+              <button id="clear-history-btn" type="button" class="secondary mini-btn">Temizle</button>
+            </div>
+            <ul id="history-list" class="history-list"></ul>
+          </div>
+        </section>
+      </section>
+    </main>
+    <footer class="site-footer" aria-label="Tanıtım">
+      <div class="site-footer-inner">
+        <a class="site-footer-link" href="https://www.leadercoders.com" target="_blank" rel="noopener noreferrer" aria-label="Leadercoders sitesini aç">
+          <img
+            class="footer-logo footer-logo-light"
+            src="./assets/logo/logo-light.png"
+            alt="Leaderecoders logo light"
+            loading="lazy"
+            onerror="this.style.display='none'"
+          />
+          <img
+            class="footer-logo footer-logo-dark"
+            src="./assets/logo/logo-dark.png"
+            alt="Leaderecoders logo dark"
+            loading="lazy"
+            onerror="this.style.display='none'"
+          />
+          <p>Bu program LeaderCoders öğrencileri tarafından geliştirilmiştir</p>
+        </a>
+      </div>
+    </footer>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="./js/config.js"></script>
+    <script src="./js/formatters/registry.js"></script>
+    <script src="./js/formatters/lang-tr.js"></script>
+    <script src="./js/formatters/lang-en.js"></script>
+    <script src="./js/formatters/lang-de.js"></script>
+    <script src="./js/formatters/lang-fr.js"></script>
+    <script src="./js/formatters/lang-es.js"></script>
+    <script src="./js/formatters/lang-it.js"></script>
+    <script src="./js/formatters/lang-pt.js"></script>
+    <script src="./js/formatters/lang-ru.js"></script>
+    <script src="./js/formatters/lang-ar.js"></script>
+    <script src="./js/formatters/lang-zh.js"></script>
+    <script src="./js/currency-linguistics.js"></script>
+    <script src="./js/formatters.js"></script>
+    <script src="./js/document-templates.js"></script>
+    <script src="./js/app.js"></script>
+    <script>
+      (function () {
+        function fillFallbackDropdowns() {
+          var appSel = document.getElementById("app-language-select");
+          var outSel = document.getElementById("output-language-select");
+          var curSel = document.getElementById("currency-select");
+          if (!appSel || !outSel || !curSel) return;
+          if (appSel.options.length > 0 && outSel.options.length > 0 && curSel.options.length > 0) return;
+
+          var langs = [
+            ["tr-TR", "Türkçe"], ["en-US", "English"], ["de-DE", "Deutsch"], ["fr-FR", "Français"],
+            ["es-ES", "Español"], ["it-IT", "Italiano"], ["pt-BR", "Português (BR)"], ["ru-RU", "Русский"],
+            ["ar-SA", "العربية"], ["zh-CN", "中文"]
+          ];
+          var currencies = [
+            ["TRY", "₺ TRY"], ["USD", "$ USD"], ["EUR", "€ EUR"], ["GBP", "£ GBP"], ["JPY", "¥ JPY"],
+            ["SAR", "﷼ SAR"], ["AED", "د.إ AED"], ["RUB", "₽ RUB"], ["CNY", "¥ CNY"], ["INR", "₹ INR"]
+          ];
+
+          appSel.innerHTML = langs.map(function (x) { return '<option value="' + x[0] + '">' + x[1] + "</option>"; }).join("");
+          outSel.innerHTML = langs.map(function (x) { return '<option value="' + x[0] + '">' + x[1] + "</option>"; }).join("");
+          curSel.innerHTML = currencies.map(function (x) { return '<option value="' + x[0] + '">' + x[1] + "</option>"; }).join("");
+          appSel.value = "tr-TR";
+          outSel.value = "tr-TR";
+          curSel.value = "TRY";
+        }
+
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", fillFallbackDropdowns);
+        } else {
+          fillFallbackDropdowns();
+        }
+      })();
+    </script>
+  </body>
+</html>
